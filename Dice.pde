@@ -2,14 +2,21 @@
 void setup()
 {
   noLoop();
+  noStroke();
   size(500,500);
 }
 void draw()
 {
   background(111,218,255);
-  Die bob = new Die(0,0);
-  bob.show();
-  
+ // Die bob = new Die(x,y);
+    for(int y = 35; y < 475; y = y +75)
+    {
+      for(int x = 35; x < 475; x = x + 75)
+      {
+      Die bob = new Die(x,y);
+      bob.show();
+      }
+    }
 }
 void mousePressed()
 {
@@ -31,22 +38,36 @@ class Die //models one single dice cube
   }
   void show()
   {
-    for(int y = 35; y < 475; y = y +75)
+    fill(255);
+    rect(myX,myY,50,50,7,7,7,7);
+    fill(0);
+    if (numDots == 1)
     {
-      for(int x = 35; x < 475; x = x + 75)
-      {
-        fill(255);
-        rect(x,y,50,50,7,7,7,7);
-        fill(0);
-        if ((int)(Math.random() * 5 + 1) == 1)
-        {
-        ellipse(x+25,y+25,10,10);
-        } 
-        else if ((int)(Math.random() * 5 + 1) == 2)
-        fill(255);
-        ellipse(x+25,y+25,10,10);
-        ellipse(x+25,y+25,10,10); 
-      }
+      ellipse(25+myX,25+myY,10,10);
+    }
+    else if (numDots == 2)
+    {
+      ellipse(25+myX,16+myY,10,10);
+      ellipse(25+myX,34+myY,10,10);
+    }
+    else if (numDots == 3)
+    {
+      ellipse(25+myX,12+myY,10,10);
+      ellipse(25+myX,25+myY,10,10);
+      ellipse(25+myX,38+myY,10,10);
+    }
+    else if (numDots == 4)
+    {
+      ellipse(15+myX,16+myY,10,10);
+      ellipse(35+myX,16+myY,10,10);
+      ellipse(15+myX,34+myY,10,10);
+      ellipse(35+myX,34+myY,10,10);
+    }
+    else if (numDots == 5)
+    {
+      ellipse(15+myX,12+myY,10,10);
+      ellipse(15+myX,25+myY,10,10);
+      ellipse(15+myX,38+myY,10,10);
     }
   }
 }
