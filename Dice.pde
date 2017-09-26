@@ -1,4 +1,5 @@
 Die bob;
+int diceCount;
 void setup()
 {
   noLoop();
@@ -14,8 +15,7 @@ void draw()
       for(int x = 35; x < 475; x = x + 75)
       {
         bob = new Die(x,y);
-    //  Die bob = new Die(x,y);
-      bob.show();
+        bob.show();
       }
     }
     textSize(20);
@@ -24,6 +24,7 @@ void draw()
 void mousePressed()
 {
   redraw();
+  diceCount = 0;
 }
 class Die //models one single dice cube
 {
@@ -34,11 +35,12 @@ class Die //models one single dice cube
     myX = x;
     myY = y;
     numDots = ((int)(Math.random() * 6 + 1));
+    diceCount = numDots + diceCount;
   }
   void roll()
   {
     fill(0);
-    text("Roll: "+ numDots,35,490);
+    text("Roll: "+ diceCount,35,490);
     
   }
   void show()
